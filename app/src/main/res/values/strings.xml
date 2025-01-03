@@ -1,3 +1,17 @@
 <resources>
     <string name="app_name">Meditation</string>
+    <string name="mindful_breathing">Mindful Breathing</string>
+    <string name="mindful_breathing_description"></string>
+    <string name="body_scan">Body Scan</string>
+    <string name="body_scan_description"></string>
+    <string name="loving_kindness_meditation">Loving-Kindness Meditation</string>
+    <string name="loving_kindness_meditation_description"></string>
+    <string name="walking_meditation">Walking Meditation</string>
+    <string name="walking_meditation_description"></string>
+    <string name="visualization">Visualization</string>
+    <string name="visualization_description"></string>
+    <string name="nature_sound_meditation">Nature Sound Meditation</string>
+    <string name="nature_sound_meditation_description"></string>
+    <string name="silent_meditation">Silent Meditation</string>
+    <string name="silent_meditation_description"></string>
 </resources>
