@@ -4,7 +4,6 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -33,10 +32,9 @@ fun MainScreen(navController : NavController) {
         ) {
             val array : Array<MeditationMode> = arrayOf(MindfulBreathing(),
                 BodyScan(), LovingKindnessMeditation(), WalkingMeditation(),
-                Visualization(), NatureSoundMeditation(), SilentMeditation()
-            )
+                Visualization(), NatureSoundMeditation(), SilentMeditation())
 
-
+            
         }
     }
 }
