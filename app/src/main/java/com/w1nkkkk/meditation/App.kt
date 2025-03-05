@@ -2,20 +2,12 @@ package com.w1nkkkk.meditation
 
 import android.app.Application
 import android.content.Context
-import com.w1nkkkk.meditation.domain.AppComponent
-import com.w1nkkkk.meditation.domain.DaggerAppComponent
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.preferencesDataStore
+import dagger.hilt.android.HiltAndroidApp
+import androidx.datastore.preferences.core.Preferences
 
-class App : Application() {
-    lateinit var appComponent: AppComponent
+val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "settings")
 
-    override fun onCreate() {
-        super.onCreate()
-        appComponent = DaggerAppComponent.create()
-    }
-}
-
-val Context.appComponent : AppComponent
-    get() = when(this) {
-        is App -> appComponent
-        else -> this.applicationContext.appComponent
-    }
+@HiltAndroidApp
+class App : Application() {}

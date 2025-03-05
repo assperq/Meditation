@@ -3,6 +3,9 @@ plugins {
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.ksp)
     alias(libs.plugins.compose.compiler)
+    id("com.google.gms.google-services")
+    alias(libs.plugins.hilt.plugin)
+    kotlin("kapt")
 }
 
 android {
@@ -61,6 +64,12 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
+    implementation(libs.androidx.media3.common.ktx)
+    implementation(libs.firebase.auth)
+    implementation(libs.androidx.credentials)
+    implementation(libs.androidx.credentials.play.services.auth)
+    implementation(libs.googleid)
+    implementation(libs.androidx.espresso.core)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -78,17 +87,24 @@ dependencies {
     implementation(libs.coroutines.core)
     implementation(libs.coroutines.android)
 
-    //dagger
-    implementation(libs.dagger.core)
-    implementation(libs.dagger.android)
-    implementation(libs.dagger.android.support)
-
-    ksp(libs.dagger.compiler)
-    ksp(libs.dagger.android.compiler)
+    //hilt
+    implementation(libs.hilt)
+    implementation(libs.hilt.fragment)
+    //kapt(libs.hilt.compiler)
+    kapt(libs.hilt.android.compiler)
+    implementation("androidx.hilt:hilt-navigation-compose:1.2.0")
 
     //datastore
     implementation(libs.datastore)
+    implementation(libs.datastore.core)
 
     //navigation
     implementation(libs.androidx.navigation.compose)
+
+    //firebase
+    implementation(platform("com.google.firebase:firebase-bom:33.10.0"))
+}
+
+kapt {
+    correctErrorTypes = true
 }

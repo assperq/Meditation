@@ -4,6 +4,8 @@ import android.content.ClipDescription
 import android.content.Context
 import androidx.compose.runtime.Composable
 
+
+// абстракьный класс для режимов медитации, он описывает их работу
 abstract class MeditationMode(protected val name : Int, protected val description: Int) {
     fun getName(context: Context) = context.getString(name)
     fun getDescription(context: Context) = context.getString(description)

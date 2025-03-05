@@ -30,7 +30,7 @@ fun MainScreen(navController : NavController) {
             .padding(top = containersPadding.calculateTopPadding()),
             contentAlignment = Alignment.Center
         ) {
-            val array : Array<MeditationMode> = arrayOf(MindfulBreathing(),
+            val modes : Array<MeditationMode> = arrayOf(MindfulBreathing(),
                 BodyScan(), LovingKindnessMeditation(), WalkingMeditation(),
                 Visualization(), NatureSoundMeditation(), SilentMeditation())
 
