@@ -17,6 +17,10 @@ fun SetupNavGraph(
     preferencesPresenter : PreferencesPresenter,
     startDestination : String
 ) {
+    val onNavigateToAuthenticatedRoute = {
+        navController.navigate(Route.Main.path)
+    }
+
     NavHost(navController = navController, startDestination = startDestination) {
         composable(Route.Main.path) {
             MainScreen(navController = navController)
@@ -33,15 +37,13 @@ fun SetupNavGraph(
         composable(Route.Login.path) {
             LoginScreen(onNavigateToRegistration = {
                 navController.navigate(Route.Registration.path)
-            })
+            }, onNavigateToAuthenticatedRoute = onNavigateToAuthenticatedRoute)
         }
 
         composable(Route.Registration.path) {
             RegistrationScreen(onNavigateBack = {
                 navController.popBackStack()
-            }, onNavigateToAuthenticatedRoute = {
-                navController.navigate(Route.Main.path)
-            })
+            }, onNavigateToAuthenticatedRoute = onNavigateToAuthenticatedRoute)
         }
     }
 }

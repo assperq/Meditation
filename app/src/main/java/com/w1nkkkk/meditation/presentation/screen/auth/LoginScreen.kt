@@ -15,13 +15,20 @@ import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.LifecycleOwner
 import com.w1nkkkk.meditation.R
 import com.w1nkkkk.meditation.presentation.component.auth.AuthViewModel
+import com.w1nkkkk.meditation.presentation.component.auth.ErrorDialog
 import com.w1nkkkk.meditation.presentation.component.auth.LoginInputs
 import com.w1nkkkk.meditation.presentation.component.auth.TitleText
 import com.w1nkkkk.meditation.presentation.theme.AppTheme
@@ -32,7 +39,35 @@ fun LoginScreen(
     authViewModel: AuthViewModel = hiltViewModel(),
     onNavigateToRegistration: () -> Unit = {},
     onNavigateToForgotPassword: () -> Unit = {},
+    onNavigateToAuthenticatedRoute: () -> Unit = {}
 ) {
+
+    var seeDialog by remember {
+        mutableStateOf(false)
+    }
+    var message by remember {
+        mutableStateOf("")
+    }
+
+
+    authViewModel.state.observe(LocalContext.current as LifecycleOwner) {
+        when(it) {
+            is AuthViewModel.State.Error -> {
+                seeDialog = true
+                message = it.throwable.localizedMessage?.toString() ?: ""
+            }
+            is AuthViewModel.State.Sucess -> {
+                if (it.state) {
+                    onNavigateToAuthenticatedRoute()
+                }
+            }
+        }
+    }
+
+    if (seeDialog) {
+        ErrorDialog(message, "Error", onClickOk = { seeDialog = false }) { }
+    }
+
     Column(
         modifier = Modifier
             .fillMaxSize()
