@@ -1,16 +1,13 @@
 package com.w1nkkkk.meditation.presentation
 
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
 import androidx.compose.runtime.mutableStateOf
 import androidx.navigation.compose.rememberNavController
-import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
-import com.w1nkkkk.meditation.data.entity.PreferencesModel
 import com.w1nkkkk.meditation.domain.preferences.Preferences
+import com.w1nkkkk.meditation.presentation.component.DateObject
 import com.w1nkkkk.meditation.presentation.component.preferences.PreferencesPresenter
 import com.w1nkkkk.meditation.presentation.component.preferences.PreferencesView
 import com.w1nkkkk.meditation.presentation.navigation.Route
@@ -40,8 +37,19 @@ class MainActivity : ComponentActivity(), PreferencesView {
     }
 
     override fun onUpdatePreferences(model: Preferences) {
-        preferences.value.meditaitionTime.value = model.meditaitionTime.value
-        Log.d("LOG", "VALUE : ${preferences.value.meditaitionTime}")
+        val today = DateObject.convertLongToTime(DateObject.currentTimeToLong())
+        if (model.toDayDate != today) {
+            preferencesPresenter.setPreferences(Preferences(
+                model.meditaitionTime,
+                true,
+                today
+            ))
+        }
+        else {
+            preferences.value.meditaitionTime.value = model.meditaitionTime.value
+            preferences.value.toDayDate = model.toDayDate
+            preferences.value.updateDaysCount = model.updateDaysCount
+        }
     }
 
     companion object {

@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.google.firebase.auth.FirebaseAuth
+import com.w1nkkkk.meditation.domain.account.AccountModel
 import com.w1nkkkk.meditation.domain.auth.AuthRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineExceptionHandler
@@ -25,6 +26,9 @@ class AuthViewModel @Inject constructor(
     private val _state : MutableLiveData<State> = MutableLiveData()
     val state : LiveData<State> = _state
 
+    private val _user : MutableLiveData<AccountModel> = MutableLiveData()
+    private val user : LiveData<AccountModel> = _user
+
     private val coroutineExceptionHandler = CoroutineExceptionHandler { _, error ->
         _state.postValue(State.Error(error))
     }
@@ -32,15 +36,15 @@ class AuthViewModel @Inject constructor(
 
     fun singIn(email : String, password : String) {
         coroutineScope.launch {
-            val state = repository.singIn(email, password)
-            _state.postValue(State.Sucess(state))
+            _user.postValue(repository.singIn(email, password))
+            _state.postValue(State.Sucess(true))
         }
     }
 
     fun createUser(email: String, password: String) {
         coroutineScope.launch {
-            val state = repository.createUser(email, password)
-            _state.postValue(State.Sucess(state))
+            _user.postValue(repository.createUser(email, password))
+            _state.postValue(State.Sucess(true))
         }
     }
 

@@ -43,7 +43,6 @@ fun RegistrationScreen(
         mutableStateOf("")
     }
 
-
     authViewModel.state.observe(LocalContext.current as LifecycleOwner) {
         when(it) {
             is AuthViewModel.State.Error -> {
@@ -59,9 +58,8 @@ fun RegistrationScreen(
     }
 
     if (seeDialog) {
-        ErrorDialog(message, "Error", onClickOk = { seeDialog = false }) { }
+        ErrorDialog(message, "Error", onClickOk = { seeDialog = false }) {}
     }
-
 
     Column(
         modifier = Modifier

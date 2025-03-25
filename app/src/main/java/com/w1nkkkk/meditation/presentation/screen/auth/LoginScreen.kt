@@ -65,7 +65,7 @@ fun LoginScreen(
     }
 
     if (seeDialog) {
-        ErrorDialog(message, "Error", onClickOk = { seeDialog = false }) { }
+        ErrorDialog(message, "Error", onClickOk = { seeDialog = false }, onDismiss = {})
     }
 
     Column(
@@ -92,7 +92,6 @@ fun LoginScreen(
                     text = stringResource(id = R.string.login_heading_text)
                 )
 
-                // Login Inputs Composable
                 LoginInputs(
                     onEmailOrMobileChange = {},
                     onPasswordChange = {},
@@ -105,16 +104,13 @@ fun LoginScreen(
             }
         }
 
-        // Register Section
         Row(
             modifier = Modifier.padding(AppTheme.dimens.paddingNormal),
             horizontalArrangement = Arrangement.Center,
             verticalAlignment = Alignment.CenterVertically
         ) {
-            // Don't have an account?
             Text(text = stringResource(id = R.string.do_not_have_account))
 
-            //Register
             Text(
                 modifier = Modifier
                     .padding(start = AppTheme.dimens.paddingExtraSmall)
