@@ -104,6 +104,9 @@ dependencies {
 
     //firebase
     implementation(platform("com.google.firebase:firebase-bom:33.10.0"))
+
+    //datetime
+    implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.6.2")
 }
 
 kapt {

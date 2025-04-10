@@ -36,9 +36,7 @@ fun LoginInputs(
         mutableStateOf("")
     }
 
-    // Login Inputs Section
     Column(modifier = Modifier.fillMaxWidth()) {
-        // Email or Mobile Number
         EmailTextField(
             modifier = Modifier
                 .fillMaxWidth()
@@ -52,7 +50,6 @@ fun LoginInputs(
         )
 
 
-        // Password
         PasswordTextField(
             modifier = Modifier
                 .fillMaxWidth()
@@ -66,7 +63,6 @@ fun LoginInputs(
             imeAction = ImeAction.Done
         )
 
-        // Forgot Password
         Text(
             modifier = Modifier
                 .padding(top = AppTheme.dimens.paddingSmall)

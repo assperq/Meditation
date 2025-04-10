@@ -1,6 +1,7 @@
 package com.w1nkkkk.meditation.presentation.navigation
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
@@ -21,9 +22,12 @@ fun SetupNavGraph(
     startDestination : String,
     accountViewModel: AccountViewModel = hiltViewModel()
 ) {
-    val onNavigateToAuthenticatedRoute = {
-        navController.navigate(Route.Main.path)
-        accountViewModel.getAccountData(FirebaseAuth.getInstance().uid!!)
+    LaunchedEffect(accountViewModel) {
+        accountViewModel.user.collect {
+            if (FirebaseAuth.getInstance().currentUser != null) {
+                navController.navigate(Route.Main.path)
+            }
+        }
     }
 
     NavHost(navController = navController, startDestination = startDestination) {
@@ -42,13 +46,13 @@ fun SetupNavGraph(
         composable(Route.Login.path) {
             LoginScreen(onNavigateToRegistration = {
                 navController.navigate(Route.Registration.path)
-            }, onNavigateToAuthenticatedRoute = onNavigateToAuthenticatedRoute)
+            })
         }
 
         composable(Route.Registration.path) {
             RegistrationScreen(onNavigateBack = {
                 navController.popBackStack()
-            }, onNavigateToAuthenticatedRoute = onNavigateToAuthenticatedRoute)
+            })
         }
     }
 }

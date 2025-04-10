@@ -1,24 +1,22 @@
 package com.w1nkkkk.meditation.presentation.component.account
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.w1nkkkk.meditation.domain.account.AccountModel
 import com.w1nkkkk.meditation.domain.account.AccountRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
-import javax.inject.Inject
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 @HiltViewModel
 class AccountViewModel @Inject constructor(
     private val repository: AccountRepository,
 ) : ViewModel() {
 
-    private val _user : MutableLiveData<AccountModel> = MutableLiveData()
-    val user : LiveData<AccountModel> = _user
+    val user : MutableStateFlow<AccountModel> = MutableStateFlow(AccountModel())
 
     private val coroutineScope = CoroutineScope(Dispatchers.IO)
 
@@ -30,7 +28,7 @@ class AccountViewModel @Inject constructor(
 
     fun getAccountData(id: String) {
         coroutineScope.launch {
-            _user.postValue(repository.getAccountData(id))
+            user.emit(repository.getAccountData(id))
         }
     }
 
@@ -38,10 +36,10 @@ class AccountViewModel @Inject constructor(
         coroutineScope.launch {
             repository.changeName(name)
         }
-        _user.value = AccountModel(
+        user.value = AccountModel(
             name,
-            _user.value!!.dayCount,
-            _user.value!!.achievements
+            user.value.dayCount,
+            user.value.achievements
         )
     }
 
@@ -49,10 +47,10 @@ class AccountViewModel @Inject constructor(
         coroutineScope.launch {
             repository.changeDaysCount(date)
         }
-        _user.value = AccountModel(
-            _user.value!!.name,
+        user.value = AccountModel(
+            user.value.name,
             date.toInt(),
-            _user.value!!.achievements
+            user.value.achievements
         )
     }
 
@@ -60,11 +58,11 @@ class AccountViewModel @Inject constructor(
         coroutineScope.launch {
             repository.addAchievement(mapOf(key to value))
         }
-        val list = _user.value!!.achievements.toMutableMap()
+        val list = user.value.achievements.toMutableMap()
         list.put(key, value)
-        _user.value = AccountModel(
-            _user.value!!.name,
-            _user.value!!.dayCount,
+        user.value = AccountModel(
+            user.value.name,
+            user.value.dayCount,
             list
         )
     }

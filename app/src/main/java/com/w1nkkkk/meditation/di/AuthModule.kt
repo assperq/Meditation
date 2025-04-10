@@ -4,6 +4,7 @@ import com.w1nkkkk.meditation.data.datasource.remote.auth.AuthRemoteDatasource
 import com.w1nkkkk.meditation.data.datasource.remote.auth.AuthRemoteDatasourceImpl
 import com.w1nkkkk.meditation.data.repository.AuthRepositoryImpl
 import com.w1nkkkk.meditation.domain.auth.AuthRepository
+import com.w1nkkkk.meditation.presentation.component.account.AccountViewModel
 import com.w1nkkkk.meditation.presentation.component.auth.AuthViewModel
 import dagger.Module
 import dagger.Provides
@@ -27,7 +28,7 @@ object AuthModule {
 
     @Provides
     @Singleton
-    fun provideViewModel(repository: AuthRepository) : AuthViewModel {
-        return AuthViewModel(repository)
+    fun provideViewModel(repository: AuthRepository, accountViewModel: AccountViewModel) : AuthViewModel {
+        return AuthViewModel(repository, accountViewModel)
     }
 }
