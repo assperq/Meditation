@@ -18,6 +18,8 @@
     <string name="silent_meditation_description"></string>
     <string name="meditation_time_preference">Meditation time (in minutes)</string>
 
+    <!--Buttons strings-->
+    <string name="start_meditation">Start meditation</string>
 
     <string name="empty_string" />
 
@@ -58,4 +60,7 @@
 
     <!--Dashboard-->
     <string name="dashboard_title_welcome_user">Welcome User</string>
+
+    <!--History-->
+    <string name="view_all_history">View All</string>
 </resources>

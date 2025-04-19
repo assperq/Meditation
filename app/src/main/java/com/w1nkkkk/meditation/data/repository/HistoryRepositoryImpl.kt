@@ -18,5 +18,4 @@ class HistoryRepositoryImpl(
     override suspend fun addHistoryItem(item: HistoryModel) {
         return datasource.addHistoryItem(mapper.mapToDboModel(item))
     }
-
 }

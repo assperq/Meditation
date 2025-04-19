@@ -1,5 +1,6 @@
 package com.w1nkkkk.meditation.presentation.component.history
 
+import androidx.lifecycle.ViewModel
 import com.w1nkkkk.meditation.domain.history.HistoryModel
 import com.w1nkkkk.meditation.domain.history.HistoryRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -12,7 +13,7 @@ import javax.inject.Inject
 @HiltViewModel
 class HistoryViewModel @Inject constructor(
     private val repository: HistoryRepository
-) {
+) : ViewModel() {
     val historyList : MutableStateFlow<List<HistoryModel>> = MutableStateFlow(emptyList())
 
     init {

@@ -28,12 +28,17 @@ class MainActivity : ComponentActivity(), PreferencesView {
             MeditationTheme {
                 val navController = rememberNavController()
                 var startDestination = Route.Main.path
+                preferencesPresenter.getPreferences()
                 if (FirebaseAuth.getInstance().currentUser == null) {
                     startDestination = Route.Login.path
                 }
                 SetupNavGraph(navController, preferencesPresenter, startDestination)
             }
         }
+
+        /* запуск медитации
+
+         */
     }
 
     override fun onUpdatePreferences(model: Preferences) {

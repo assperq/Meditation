@@ -6,4 +6,5 @@ sealed class Route(val path : String) {
     data object Profile : Route("profile")
     data object Login : Route("login")
     data object Registration : Route("registration")
+    data object History : Route("history")
 }

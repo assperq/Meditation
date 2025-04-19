@@ -1,5 +1,7 @@
 package com.w1nkkkk.meditation.domain.mode
 
+import android.os.Parcel
+import android.os.Parcelable
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.unit.sp
@@ -16,7 +18,8 @@ import com.w1nkkkk.meditation.R
 
 class MindfulBreathing : MeditationMode(
     name = R.string.mindful_breathing,
-    description = R.string.mindful_breathing_description
+    description = R.string.mindful_breathing_description,
+    musicResource = R.raw.test_music
 ) {
     override fun meditate() {}
 
@@ -24,4 +27,26 @@ class MindfulBreathing : MeditationMode(
     override fun MeditationUI() {
         Text("MIND_MEDITATION", fontSize = 30.sp)
     }
+
+    override fun describeContents(): Int = 0
+
+    override fun writeToParcel(dest: Parcel, flags: Int) {
+        dest.writeInt(name)
+        dest.writeInt(description)
+        dest.writeInt(musicResource)
+    }
+
+    companion object {
+        @JvmField
+        val CREATOR: Parcelable.Creator<MeditationMode> = object : Parcelable.Creator<MeditationMode> {
+            override fun createFromParcel(parcel: Parcel): MeditationMode {
+                return MindfulBreathing()
+            }
+
+            override fun newArray(size: Int): Array<MeditationMode?> {
+                return arrayOfNulls(size)
+            }
+        }
+    }
+
 }

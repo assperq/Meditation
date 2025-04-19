@@ -91,6 +91,7 @@ dependencies {
     //hilt
     implementation(libs.hilt)
     implementation(libs.hilt.fragment)
+
     //kapt(libs.hilt.compiler)
     kapt(libs.hilt.android.compiler)
     implementation("androidx.hilt:hilt-navigation-compose:1.2.0")

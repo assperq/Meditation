@@ -8,7 +8,6 @@ import com.w1nkkkk.meditation.domain.preferences.PreferencesRepository
 import com.w1nkkkk.meditation.presentation.MainActivity
 import com.w1nkkkk.meditation.presentation.component.preferences.PreferencesPresenter
 import com.w1nkkkk.meditation.presentation.component.preferences.PreferencesPresenterImpl
-import com.w1nkkkk.meditation.presentation.component.preferences.PreferencesView
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -33,8 +32,7 @@ object PreferencesModule {
         repository: PreferencesRepository,
         @ActivityContext activity : Context
     ) : PreferencesPresenter {
-        val myActivity = if(activity is MainActivity) activity
-        else throw Exception("NOT MAIN ACTIVITY PROVIDE")
+        val myActivity = activity as? MainActivity ?: throw Exception("NOT MAIN ACTVITYI PROVIDE")
         return PreferencesPresenterImpl(repository, myActivity)
     }
 }

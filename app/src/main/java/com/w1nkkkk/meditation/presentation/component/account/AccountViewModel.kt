@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.w1nkkkk.meditation.domain.account.AccountModel
 import com.w1nkkkk.meditation.domain.account.AccountRepository
+import com.w1nkkkk.meditation.presentation.MainActivity
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -44,14 +45,29 @@ class AccountViewModel @Inject constructor(
     }
 
     fun changeDaysCount(date: Long) {
-        coroutineScope.launch {
-            repository.changeDaysCount(date)
+        if (MainActivity.preferences.value.updateDaysCount) {
+            coroutineScope.launch {
+                repository.changeDaysCount(date)
+            }
+            user.value = AccountModel(
+                user.value.name,
+                date.toInt(),
+                user.value.achievements
+            )
         }
-        user.value = AccountModel(
-            user.value.name,
-            date.toInt(),
-            user.value.achievements
-        )
+    }
+
+    fun changeDaysCount() {
+        if (MainActivity.preferences.value.updateDaysCount) {
+            coroutineScope.launch {
+                repository.changeDaysCount((user.value.dayCount + 1).toLong())
+            }
+            user.value = AccountModel(
+                user.value.name,
+                user.value.dayCount + 1,
+                user.value.achievements
+            )
+        }
     }
 
     fun addAchievement(key: String, value: String) {

@@ -1,6 +1,7 @@
 package com.w1nkkkk.meditation.presentation.screen
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -8,7 +9,10 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
@@ -16,7 +20,9 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -32,13 +38,16 @@ import com.w1nkkkk.meditation.presentation.component.HorizontalSpace
 import com.w1nkkkk.meditation.presentation.component.VerticalSpace
 import com.w1nkkkk.meditation.presentation.component.account.AccountViewModel
 import com.w1nkkkk.meditation.presentation.component.auth.AuthViewModel
+import com.w1nkkkk.meditation.presentation.component.history.HistoryItem
+import com.w1nkkkk.meditation.presentation.component.history.HistoryViewModel
 import com.w1nkkkk.meditation.presentation.navigation.Route
 
 @Composable
 fun ProfileScreen(
     navController : NavController,
     authViewModel: AuthViewModel = hiltViewModel(),
-    accountViewModel: AccountViewModel = hiltViewModel()
+    accountViewModel: AccountViewModel = hiltViewModel(),
+    historyViewModel: HistoryViewModel = hiltViewModel()
 ) {
 
     val user = accountViewModel.user.collectAsState()
@@ -86,8 +95,29 @@ fun ProfileScreen(
                     }
                 }
 
+                VerticalSpace(5.dp)
+                HorizontalDivider(color = Color.Gray)
                 VerticalSpace(20.dp)
                 //HistoryBlock
+                Column {
+                    Row {
+                        Image(painter = painterResource(R.drawable.ic_back), contentDescription = null)
+                        HorizontalSpace(4.dp)
+                        BaseText(LocalContext.current.getString(R.string.view_all_history),
+                            modifier = Modifier.clickable(onClick = {
+                                navController.navigate(Route.History.path)
+                            }))
+                    }
+                    VerticalSpace(4.dp)
+                    LazyColumn {
+                        items(historyViewModel.historyList.value.subList(0, 2)) {
+                            HistoryItem(it)
+                            VerticalSpace(4.dp)
+                        }
+                    }
+                }
+
+                HorizontalDivider(color = Color.Gray)
                 //AchivmentsBlock
             }
         }

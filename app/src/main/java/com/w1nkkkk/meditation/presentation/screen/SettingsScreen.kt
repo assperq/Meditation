@@ -43,10 +43,10 @@ fun SettingsScreen(navController : NavController, preferencesPresenter: Preferen
         modifier = Modifier.fillMaxSize()
     ) { containersPadding ->
         Box(modifier = Modifier.fillMaxSize()
-            .padding(top = containersPadding.calculateTopPadding())
+            .padding(top = containersPadding.calculateTopPadding() + 10.dp, start = 10.dp, end = 10.dp)
         ) {
             Column {
-                Row(modifier = Modifier.fillMaxWidth().padding(top = 10.dp, start = 10.dp)) {
+                Row(modifier = Modifier.fillMaxWidth()) {
                     BaseText(context.getString(R.string.meditation_time_preference) + ": ", fontSize = 22.sp)
                     BaseText("%.0f".format(meditationTime), fontSize = 22.sp)
                 }

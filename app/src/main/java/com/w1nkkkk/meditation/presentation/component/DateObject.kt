@@ -6,14 +6,14 @@ import java.util.Date
 object DateObject {
     fun convertLongToTime(time: Long): String {
         val date = Date(time)
-        val format = SimpleDateFormat("yyyy.MM.dd HH:mm")
+        val format = SimpleDateFormat("yyyy-MM-dd")
         return format.format(date)
     }
     fun currentTimeToLong(): Long {
         return System.currentTimeMillis()
     }
     fun convertDateToLong(date: String): Long {
-        val df = SimpleDateFormat("yyyy.MM.dd HH:mm")
+        val df = SimpleDateFormat("yyyy-MM-dd")
         return df.parse(date).time
     }
 }
