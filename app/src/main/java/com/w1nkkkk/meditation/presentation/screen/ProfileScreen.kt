@@ -12,7 +12,6 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
@@ -20,7 +19,6 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
@@ -32,6 +30,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.w1nkkkk.meditation.R
+import com.w1nkkkk.meditation.domain.history.HistoryModel
 import com.w1nkkkk.meditation.presentation.component.AppTopBar
 import com.w1nkkkk.meditation.presentation.component.BaseText
 import com.w1nkkkk.meditation.presentation.component.HorizontalSpace
@@ -51,12 +50,14 @@ fun ProfileScreen(
 ) {
 
     val user = accountViewModel.user.collectAsState()
+    val historyList = historyViewModel.historyList.collectAsState()
 
     Scaffold(
         topBar = { AppTopBar(navController, mainScreen = false) },
         modifier = Modifier.fillMaxSize()
     ) { containersPadding ->
-        Box(modifier = Modifier.fillMaxSize()
+        Box(modifier = Modifier
+            .fillMaxSize()
             .padding(top = containersPadding.calculateTopPadding(), start = 10.dp, end = 10.dp),
         ) {
             Column {
@@ -90,34 +91,40 @@ fun ProfileScreen(
                             fontWeight = FontWeight.ExtraBold,
                             fontSize = 30.sp)
                         VerticalSpace(10.dp)
-                        BaseText("Дней в ударе: ${user.value.dayCount}", fontWeight = FontWeight.ExtraBold,
+                        BaseText("${LocalContext.current.getString(R.string.days_on_the_roll)}: ${user.value.dayCount}", fontWeight = FontWeight.ExtraBold,
                             fontSize = 20.sp)
                     }
                 }
 
-                VerticalSpace(5.dp)
-                HorizontalDivider(color = Color.Gray)
                 VerticalSpace(20.dp)
                 //HistoryBlock
                 Column {
-                    Row {
+                    Row(modifier = Modifier.clickable(onClick = {
+                        navController.navigate(Route.History.path)
+                    })) {
                         Image(painter = painterResource(R.drawable.ic_back), contentDescription = null)
                         HorizontalSpace(4.dp)
-                        BaseText(LocalContext.current.getString(R.string.view_all_history),
-                            modifier = Modifier.clickable(onClick = {
-                                navController.navigate(Route.History.path)
-                            }))
+                        BaseText(LocalContext.current.getString(R.string.view_all_history))
                     }
                     VerticalSpace(4.dp)
+
                     LazyColumn {
-                        items(historyViewModel.historyList.value.subList(0, 2)) {
+                        var subList : List<HistoryModel> = emptyList()
+                        try {
+                            subList = historyList.value.subList(0, 3)
+                        } catch (_ : Exception) {
+                            subList = historyList.value
+                        }
+                        items(subList) {
                             HistoryItem(it)
                             VerticalSpace(4.dp)
+                        }
+                        item {
+                            VerticalSpace(7.dp)
                         }
                     }
                 }
 
-                HorizontalDivider(color = Color.Gray)
                 //AchivmentsBlock
             }
         }

@@ -36,7 +36,7 @@ fun SetupNavGraph(
 
     NavHost(navController = navController, startDestination = startDestination) {
         composable(Route.Main.path) {
-            MainScreen(navController = navController)
+            MainScreen(navController = navController, preferencesPresenter = preferencesPresenter)
         }
 
         composable(Route.Settings.path) {

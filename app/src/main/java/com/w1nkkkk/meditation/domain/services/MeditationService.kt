@@ -1,6 +1,5 @@
 package com.w1nkkkk.meditation.domain.services
 
-import android.app.Notification
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.Service
@@ -34,9 +33,6 @@ class MeditationService : Service() {
         getSystemService(NOTIFICATION_SERVICE) as NotificationManager
     }
 
-//    @Inject
-//    lateinit var preferencesRepository: PreferencesPresenter
-
     @Inject
     lateinit var historyViewModel: HistoryViewModel
 
@@ -65,7 +61,6 @@ class MeditationService : Service() {
 
             override fun onFinish() {
                 sendCompletionNotification()
-                updatePreferences()
                 addHistoryItem(mode)
                 mediaPlayer.stop()
                 stopSelf()
@@ -108,17 +103,6 @@ class MeditationService : Service() {
         notificationManager.notify(notificationId, notification)
     }
 
-    private fun updatePreferences() {
-        val today = DateObject.convertLongToTime(DateObject.currentTimeToLong())
-//        CoroutineScope(Dispatchers.IO).launch {
-//            preferencesRepository.setPreferences(Preferences(
-//                MainActivity.preferences.value.meditaitionTime,
-//                false,
-//                today
-//            ))
-//        }
-    }
-
     private fun addHistoryItem(mode: MeditationMode) {
         historyViewModel.addHistoryItem(
             HistoryModel(
@@ -141,16 +125,6 @@ class MeditationService : Service() {
             }
             getSystemService(NotificationManager::class.java).createNotificationChannel(channel)
         }
-    }
-
-    private fun buildNotification(): Notification {
-        return NotificationCompat.Builder(this, CHANNEL_ID)
-            .setContentTitle("Медитация")
-            .setContentText("Идёт сеанс медитации")
-            .setSmallIcon(R.drawable.ic_profile_icon)
-            .setPriority(NotificationCompat.PRIORITY_LOW)
-            .setOngoing(true)
-            .build()
     }
 
     override fun onDestroy() {

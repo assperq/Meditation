@@ -35,10 +35,6 @@ class MainActivity : ComponentActivity(), PreferencesView {
                 SetupNavGraph(navController, preferencesPresenter, startDestination)
             }
         }
-
-        /* запуск медитации
-
-         */
     }
 
     override fun onUpdatePreferences(model: Preferences) {

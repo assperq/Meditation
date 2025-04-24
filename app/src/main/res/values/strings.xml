@@ -1,27 +1,27 @@
 <resources>
-    <string name="app_name">Meditation</string>
+    <string name="app_name" translatable="false">Meditation</string>
 
     <!--Meditation strings-->
-    <string name="mindful_breathing">Mindful Breathing</string>
-    <string name="mindful_breathing_description"></string>
-    <string name="body_scan">Body Scan</string>
-    <string name="body_scan_description"></string>
-    <string name="loving_kindness_meditation">Loving-Kindness Meditation</string>
-    <string name="loving_kindness_meditation_description"></string>
-    <string name="walking_meditation">Walking Meditation</string>
-    <string name="walking_meditation_description"></string>
-    <string name="visualization">Visualization</string>
-    <string name="visualization_description"></string>
-    <string name="nature_sound_meditation">Nature Sound Meditation</string>
-    <string name="nature_sound_meditation_description"></string>
-    <string name="silent_meditation">Silent Meditation</string>
-    <string name="silent_meditation_description"></string>
+    <string name="mindful_breathing" translatable="false">Mindful Breathing</string>
+    <string name="mindful_breathing_description">This is a basic mode that helps you focus on the current moment through observing your breathing.</string>
+    <string name="body_scan" translatable="false">Body Scan</string>
+    <string name="body_scan_description">It is a guided meditation that guides the user through consistent awareness of different parts of the body.</string>
+    <string name="loving_kindness_meditation" translatable="false">Loving-Kindness Meditation</string>
+    <string name="loving_kindness_meditation_description">It is a meditation that aims to develop a sense of kindness and compassion for oneself and others.</string>
+    <string name="walking_meditation" translatable="false">Walking Meditation</string>
+    <string name="walking_meditation_description">This mode is designed for meditation while walking.</string>
+    <string name="visualization" translatable="false">Visualization</string>
+    <string name="visualization_description">This is a meditation based on working with the imagination.</string>
+    <string name="nature_sound_meditation" translatable="false">Nature Sound Meditation</string>
+    <string name="nature_sound_meditation_description">This mode focuses on listening to the sounds of nature.</string>
+    <string name="silent_meditation" translatable="false">Silent Meditation</string>
+    <string name="silent_meditation_description">This mode is designed for meditation in complete silence.</string>
     <string name="meditation_time_preference">Meditation time (in minutes)</string>
 
     <!--Buttons strings-->
     <string name="start_meditation">Start meditation</string>
 
-    <string name="empty_string" />
+    <string name="empty_string" translatable="false" />
 
     <string name="navigate_back">Navigate to the previous screen</string>
 
@@ -31,8 +31,8 @@
     <string name="login_password_label">Password</string>
     <string name="login_button_text">Login</string>
     <string name="forgot_password">Forgot Password?</string>
-    <string name="icon_password_visible">Password Visible</string>
-    <string name="icon_password_hidden">Password Hidden</string>
+    <string name="icon_password_visible" translatable="false">Password Visible</string>
+    <string name="icon_password_hidden" translatable="false">Password Hidden</string>
 
     <!--Login Error Messages-->
     <string name="login_error_msg_empty_email_mobile">Please enter your email or mobile number</string>
@@ -60,6 +60,7 @@
 
     <!--Dashboard-->
     <string name="dashboard_title_welcome_user">Welcome User</string>
+    <string name="days_on_the_roll">Days on the roll</string>
 
     <!--History-->
     <string name="view_all_history">View All</string>

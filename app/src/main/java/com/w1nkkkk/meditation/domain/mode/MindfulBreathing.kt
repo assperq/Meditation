@@ -2,9 +2,6 @@ package com.w1nkkkk.meditation.domain.mode
 
 import android.os.Parcel
 import android.os.Parcelable
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.unit.sp
 import com.w1nkkkk.meditation.R
 
 /*
@@ -19,15 +16,9 @@ import com.w1nkkkk.meditation.R
 class MindfulBreathing : MeditationMode(
     name = R.string.mindful_breathing,
     description = R.string.mindful_breathing_description,
-    musicResource = R.raw.test_music
+    musicResource = R.raw.test_music,
+    image = R.drawable.ic_profile_icon
 ) {
-    override fun meditate() {}
-
-    @Composable
-    override fun MeditationUI() {
-        Text("MIND_MEDITATION", fontSize = 30.sp)
-    }
-
     override fun describeContents(): Int = 0
 
     override fun writeToParcel(dest: Parcel, flags: Int) {

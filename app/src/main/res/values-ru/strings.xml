@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Meditation</string>
+    <string name="mindful_breathing_description">Это базовый режим, который помогает вам сосредоточиться на текущем моменте, наблюдая за своим дыханием.</string>
+    <string name="body_scan_description">Это управляемая медитация, которая помогает пользователю последовательно осознавать различные части тела.</string>
+    <string name="loving_kindness_meditation_description">Это медитация, направленная на развитие чувства доброты и сострадания к себе и другим.</string>
+    <string name="walking_meditation_description">Этот режим предназначен для медитации во время ходьбы.</string>
+
+    <string name="visualization_description">Это медитация, основанная на работе с воображением.</string>
+    <string name="nature_sound_meditation_description">Этот режим фокусируется на прослушивании звуков природы.</string>
+    <string name="silent_meditation_description">Этот режим предназначен для медитации в полной тишине.</string>
+    <string name="meditation_time_preference">Время медитации (в минутах)</string>
+    <string name="start_meditation">Начать медитацию</string>
+    <string name="navigate_back">Перейти на прошлый экран</string>
+    <string name="login_heading_text">Вход</string>
+    <string name="login_email_id_or_phone_label">Почта или номер телефона</string>
+    <string name="login_password_label">Пароль</string>
+    <string name="login_button_text">Вход</string>
+    <string name="forgot_password">Забыли пароль?</string>
+    <string name="login_error_msg_empty_email_mobile">Пожалуйста введите почту или номер телефона</string>
+    <string name="login_error_msg_empty_password">Пожалуйста введите пароль</string>
+    <string name="do_not_have_account">Еще не зарегестрированы?</string>
+    <string name="register">Регистрация</string>
+    <string name="registration_heading_text">Регистрация</string>
+    <string name="registration_email_label">Почта</string>
+    <string name="registration_mobile_label">Номер телефона</string>
+    <string name="registration_password_label">Пароль</string>
+    <string name="registration_confirm_password_label">Подтвержденный пароль</string>
+    <string name="registration_button_text">Зарегестрироваться</string>
+    <string name="back_to_login">Вернуться к авторизации</string>
+    <string name="registration_error_msg_empty_email">Пожалуйста введите почту</string>
+    <string name="registration_error_msg_empty_mobile">Пожалуйста введите мобильный телефон</string>
+    <string name="registration_error_msg_empty_password">Пожалуйста введите пароль</string>
+    <string name="registration_error_msg_empty_confirm_password">Пожалуйста подтвердите пароль</string>
+    <string name="registration_error_msg_password_mismatch">Пожалуйста введите одинаковые пароли</string>
+    <string name="dashboard_title_welcome_user">Добро пожаловать</string>
+    <string name="days_on_the_roll">Дней в ударе</string>
+    <string name="view_all_history">Посмотреть все</string>
+</resources>

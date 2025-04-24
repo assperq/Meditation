@@ -7,7 +7,7 @@ class AccountMapper {
     fun map(account : AccountDtoModel) : AccountModel {
         return AccountModel(
             name = account.name,
-            dayCount = account.dayCount,
+            dayCount = account.day_count,
             achievements = account.achievements
         )
     }
