@@ -39,6 +39,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.core.content.ContextCompat
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -54,7 +55,6 @@ import com.w1nkkkk.meditation.domain.mode.Visualization
 import com.w1nkkkk.meditation.domain.mode.WalkingMeditation
 import com.w1nkkkk.meditation.domain.preferences.Preferences
 import com.w1nkkkk.meditation.domain.services.MeditationService
-import com.w1nkkkk.meditation.isMyServiceRunning
 import com.w1nkkkk.meditation.presentation.MainActivity
 import com.w1nkkkk.meditation.presentation.component.AppTopBar
 import com.w1nkkkk.meditation.presentation.component.BaseText
@@ -131,7 +131,7 @@ fun MainScreen(
                             VerticalSpace(4.dp)
                             BaseText(currentMode.getName(context))
                             VerticalSpace(4.dp)
-                            BaseText(currentMode.getDescription(context))
+                            BaseText(currentMode.getDescription(context), textAlign = TextAlign.Center)
                         }
                     }
 
@@ -174,28 +174,48 @@ fun MainScreen(
 
                 VerticalSpace(10.dp)
 
-                Button(onClick = {
-                    if (!isMyServiceRunning(MeditationService::class.java, context)) {
-                        accountViewModel.changeDaysCount()
-                        val today = DateObject.convertLongToTime(DateObject.currentTimeToLong())
-                        CoroutineScope(Dispatchers.IO).launch {
-                            preferencesPresenter.setPreferences(
-                                Preferences(
-                                    MainActivity.preferences.value.meditaitionTime,
-                                    false,
-                                    today
-                                )
+                val startMeditation = {
+                    accountViewModel.changeDaysCount()
+                    val today = DateObject.convertLongToTime(DateObject.currentTimeToLong())
+                    CoroutineScope(Dispatchers.IO).launch {
+                        preferencesPresenter.setPreferences(
+                            Preferences(
+                                MainActivity.preferences.value.meditaitionTime,
+                                false,
+                                today
                             )
-                        }
-                        val intent = Intent(context, MeditationService::class.java).apply {
-                            putExtra(MeditationMode.parcelableName, modes[currentIndex])
-                        }
-                        ContextCompat.startForegroundService(context, intent)
+                        )
+                    }
+                    val intent = Intent(context, MeditationService::class.java).apply {
+                        putExtra(MeditationMode.parcelableName, modes[currentIndex])
+                    }
+                    ContextCompat.startForegroundService(context, intent)
+                }
+
+                val stopMeditation = {
+                    val intent = Intent(context, MeditationService::class.java)
+                    context.stopService(intent)
+                }
+
+                var buttonText by remember {
+                    mutableStateOf(context.getString(R.string.start_meditation))
+                }
+
+                Button(onClick = {
+                    if(MeditationService.isRunning) {
+                        stopMeditation()
+                        buttonText = context.getString(R.string.start_meditation)
+                    }
+                    else  {
+                        startMeditation()
+                        buttonText = context.getString(R.string.stop_meditation)
                     }
                 }) {
-                    Text(context.getString(R.string.start_meditation))
+                    Text(text = buttonText)
                 }
             }
         }
     }
 }
+
+

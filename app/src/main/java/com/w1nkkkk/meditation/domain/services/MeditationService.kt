@@ -63,11 +63,14 @@ class MeditationService : Service() {
                 sendCompletionNotification()
                 addHistoryItem(mode)
                 mediaPlayer.stop()
+                isRunning = false
                 stopSelf()
             }
         }.start()
 
         mediaPlayer.start()
+
+        isRunning = true
 
         return START_STICKY
     }
@@ -131,9 +134,12 @@ class MeditationService : Service() {
         super.onDestroy()
         timer?.cancel()
         mediaPlayer.release()
+        isRunning = false
     }
 
     companion object {
         const val EXTRA_DURATION = "duration_extra"
+
+        var isRunning : Boolean = false
     }
 }

@@ -3,8 +3,9 @@ package com.w1nkkkk.meditation.domain.account
 data class AccountModel(
     val name : String,
     val dayCount : Int,
-    val achievements : Map<String, String>
+    val achievements : Map<String, String>,
+    val emotion_state : Int
 ) {
-    constructor() : this("", -1, mapOf())
+    constructor() : this("", -1, mapOf(), 0)
 }
 

@@ -8,7 +8,8 @@ class AccountMapper {
         return AccountModel(
             name = account.name,
             dayCount = account.day_count,
-            achievements = account.achievements
+            achievements = account.achievements,
+            emotion_state = account.emotion_state
         )
     }
 }

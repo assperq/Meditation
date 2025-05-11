@@ -40,7 +40,8 @@ class AccountViewModel @Inject constructor(
         user.value = AccountModel(
             name,
             user.value.dayCount,
-            user.value.achievements
+            user.value.achievements,
+            user.value.emotion_state
         )
     }
 
@@ -52,7 +53,8 @@ class AccountViewModel @Inject constructor(
             user.value = AccountModel(
                 user.value.name,
                 date.toInt(),
-                user.value.achievements
+                user.value.achievements,
+                user.value.emotion_state
             )
         }
     }
@@ -65,7 +67,8 @@ class AccountViewModel @Inject constructor(
             user.value = AccountModel(
                 user.value.name,
                 user.value.dayCount + 1,
-                user.value.achievements
+                user.value.achievements,
+                user.value.emotion_state
             )
         }
     }
@@ -79,8 +82,20 @@ class AccountViewModel @Inject constructor(
         user.value = AccountModel(
             user.value.name,
             user.value.dayCount,
-            list
+            list,
+            user.value.emotion_state
         )
     }
 
+    fun changeEmotionalState(state: Int) {
+        coroutineScope.launch {
+            repository.changeEmotionalState(state)
+        }
+        user.value = AccountModel(
+            user.value.name,
+            user.value.dayCount,
+            user.value.achievements,
+            state
+        )
+    }
 }

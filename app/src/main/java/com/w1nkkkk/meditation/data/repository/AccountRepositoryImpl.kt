@@ -23,6 +23,10 @@ class AccountRepositoryImpl(
         datasourceImpl.addAchievement(achievement)
     }
 
+    override suspend fun changeEmotionalState(state: Int) {
+        datasourceImpl.changeEmotionalState(state)
+    }
+
     override suspend fun getAccountData(id: String): AccountModel {
         return mapper.map(datasourceImpl.getAccountData(id))
     }

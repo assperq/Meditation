@@ -20,6 +20,8 @@
 
     <!--Buttons strings-->
     <string name="start_meditation">Start meditation</string>
+    <string name="stop_meditation">Stop meditation</string>
+    <string name="log_out_button">Log out</string>
 
     <string name="empty_string" translatable="false" />
 
