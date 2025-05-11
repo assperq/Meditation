@@ -22,6 +22,9 @@
     <string name="start_meditation">Start meditation</string>
     <string name="stop_meditation">Stop meditation</string>
     <string name="log_out_button">Log out</string>
+    <string name="change_name">Change name</string>
+    <string name="user_name">Username</string>
+    <string name="emotional_state">Emotional state</string>
 
     <string name="empty_string" translatable="false" />
 

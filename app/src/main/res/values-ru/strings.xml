@@ -38,4 +38,7 @@
     <string name="view_all_history">Посмотреть все</string>
     <string name="stop_meditation">Остановить медитацию</string>
     <string name="log_out_button">Выйти из аккаунта</string>
+    <string name="change_name">Сменить имя</string>
+    <string name="user_name">Имя пользователя</string>
+    <string name="emotional_state">Эмоциональное состояние</string>
 </resources>
