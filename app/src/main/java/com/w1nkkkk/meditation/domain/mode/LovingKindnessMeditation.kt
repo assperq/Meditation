@@ -13,8 +13,8 @@ import com.w1nkkkk.meditation.R
 class LovingKindnessMeditation() : MeditationMode(
     name = R.string.loving_kindness_meditation,
     description = R.string.loving_kindness_meditation_description,
-    musicResource = R.raw.test_music,
-    image = R.drawable.ic_profile_icon
+    musicResource = R.raw.loving_kindness,
+    image = R.drawable.loving_kindness_meditation_ic
 ) {
 
     override fun describeContents(): Int = 0

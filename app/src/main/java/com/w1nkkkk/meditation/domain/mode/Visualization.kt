@@ -13,8 +13,8 @@ import com.w1nkkkk.meditation.R
 class Visualization : MeditationMode(
     name = R.string.visualization,
     description = R.string.visualization_description,
-    musicResource = R.raw.test_music,
-    image = R.drawable.ic_profile_icon
+    musicResource = R.raw.vizualization,
+    image = R.drawable.visualization_ic
 ) {
 
     override fun describeContents(): Int = 0

@@ -14,8 +14,8 @@ import com.w1nkkkk.meditation.R
 class BodyScan : MeditationMode(
     name = R.string.body_scan,
     description = R.string.body_scan_description,
-    musicResource = R.raw.test_music,
-    image = R.drawable.ic_profile_icon
+    musicResource = R.raw.body_scan,
+    image = R.drawable.body_scan_ic
 ) {
 
     override fun describeContents(): Int = 0

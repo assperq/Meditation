@@ -12,8 +12,8 @@ import com.w1nkkkk.meditation.R
 class SilentMeditation : MeditationMode(
     name = R.string.silent_meditation,
     description = R.string.silent_meditation_description,
-    musicResource = R.raw.test_music,
-    image = R.drawable.ic_profile_icon
+    musicResource = R.raw.silent_meditation,
+    image = R.drawable.silent_meditation_ic
 ) {
 
     override fun describeContents(): Int = 0

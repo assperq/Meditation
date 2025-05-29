@@ -8,6 +8,7 @@ import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.sp
 import com.w1nkkkk.meditation.R
@@ -19,7 +20,9 @@ fun BaseText(
     fontSize: TextUnit = 16.sp,
     fontWeight: FontWeight = FontWeight.Normal,
     color: Color = Color.Unspecified,
-    textAlign: TextAlign = TextAlign.Unspecified
+    textAlign: TextAlign = TextAlign.Unspecified,
+    maxLines : Int = 3,
+    overflow : TextOverflow = TextOverflow.Clip
 ) {
     Text(
         text = text,
@@ -28,6 +31,8 @@ fun BaseText(
         fontWeight = fontWeight,
         color = color,
         fontFamily = FontFamily(Font(R.font.roboto_regular)),
-        textAlign = textAlign
+        textAlign = textAlign,
+        maxLines = maxLines,
+        overflow = overflow
     )
 }

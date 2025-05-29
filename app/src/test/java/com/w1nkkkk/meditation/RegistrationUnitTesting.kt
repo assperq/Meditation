@@ -39,6 +39,13 @@ class RegistrationUnitTesting {
     }
 
     @Test
+    fun `Right Email and Small Password Create User`() = runBlocking {
+        val params = arrayOf("emailemail.com", "123")
+        every { runBlocking { repository.createUser(params[0], params[1]) } } returns AccountModel()
+        assertThat(repository.createUser(params[0], params[1])).isNotEqualTo(rightUser)
+    }
+
+    @Test
     fun `Empty Email SingIn`() = runBlocking {
         val params = arrayOf(String(), "123456")
         every { runBlocking { repository.singIn(params[0], params[1]) } } returns AccountModel()

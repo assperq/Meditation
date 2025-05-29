@@ -7,7 +7,6 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
@@ -132,7 +131,7 @@ fun ProfileScreen(
                         })) {
                             BaseText(userName,
                                 fontWeight = FontWeight.ExtraBold,
-                                fontSize = 30.sp)
+                                fontSize = 20.sp)
                             HorizontalSpace(3.dp)
                             Box(contentAlignment = Alignment.TopStart) {
                                 Icon(painter = painterResource(R.drawable.pencil), null, modifier = Modifier.size(14.dp))
@@ -141,22 +140,28 @@ fun ProfileScreen(
 
                         VerticalSpace(10.dp)
                         BaseText("${LocalContext.current.getString(R.string.days_on_the_roll)}: ${user.value.dayCount}", fontWeight = FontWeight.ExtraBold,
-                            fontSize = 20.sp)
+                            fontSize = 18.sp)
 
                         VerticalSpace(3.dp)
-                        Row(Modifier.height(45.dp), verticalAlignment = Alignment.CenterVertically) {
-                            BaseText("${LocalContext.current.getString(R.string.emotional_state)}:",
+                        Row(
+                            Modifier.fillMaxWidth(),
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            Text(
+                                text = "${LocalContext.current.getString(R.string.emotional_state)}: ${user.value.emotion_state}",
                                 fontWeight = FontWeight.ExtraBold,
-                                fontSize = 18.sp)
-                            BaseText(" ${user.value.emotion_state}",
-                                fontWeight = FontWeight.ExtraBold,
+                                fontSize = 18.sp,
                                 color = emotionColor,
-                                fontSize = 18.sp)
+                                modifier = Modifier.weight(1f),
+                                softWrap = true // Перенос текста (включено по умолчанию)
+                            )
                             HorizontalSpace(3.dp)
-                            Box(contentAlignment = Alignment.Center) {
-                                Image(painter = painterResource(emotionImage), null, Modifier.size(32.dp),
-                                    contentScale = ContentScale.Fit)
-                            }
+                            Image(
+                                painter = painterResource(emotionImage),
+                                contentDescription = null,
+                                modifier = Modifier.size(32.dp),
+                                contentScale = ContentScale.Fit
+                            )
                         }
                     }
                 }

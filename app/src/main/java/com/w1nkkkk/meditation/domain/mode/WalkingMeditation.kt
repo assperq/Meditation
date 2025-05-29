@@ -13,8 +13,8 @@ import com.w1nkkkk.meditation.R
 class WalkingMeditation : MeditationMode(
     name = R.string.walking_meditation,
     description = R.string.walking_meditation_description,
-    musicResource = R.raw.test_music,
-    image = R.drawable.ic_profile_icon
+    musicResource = R.raw.walking,
+    image = R.drawable.walking_meditation_ic
 ) {
 
     override fun describeContents(): Int = 0

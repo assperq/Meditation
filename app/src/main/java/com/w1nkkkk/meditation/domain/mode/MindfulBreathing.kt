@@ -16,8 +16,8 @@ import com.w1nkkkk.meditation.R
 class MindfulBreathing : MeditationMode(
     name = R.string.mindful_breathing,
     description = R.string.mindful_breathing_description,
-    musicResource = R.raw.test_music,
-    image = R.drawable.ic_profile_icon
+    musicResource = R.raw.mindful_breathing,
+    image = R.drawable.mindful_breathing_ic
 ) {
     override fun describeContents(): Int = 0
 
