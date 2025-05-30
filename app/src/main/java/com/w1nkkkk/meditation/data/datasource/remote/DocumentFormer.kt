@@ -22,4 +22,5 @@ object FirestoreFields {
 
 object FirestoreCollections {
     val users = "users"
+    val admins = "admins"
 }

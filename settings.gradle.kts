@@ -21,3 +21,5 @@ dependencyResolutionManagement {
 
 rootProject.name = "Meditation"
 include(":app")
+//include(":admin_panel")
+include(":adminpanel")

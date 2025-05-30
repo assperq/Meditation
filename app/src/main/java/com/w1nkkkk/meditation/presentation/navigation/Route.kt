@@ -7,4 +7,5 @@ sealed class Route(val path : String) {
     data object Login : Route("login")
     data object Registration : Route("registration")
     data object History : Route("history")
+    data object Test : Route("test")
 }

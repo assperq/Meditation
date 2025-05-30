@@ -41,4 +41,6 @@
     <string name="change_name">Сменить имя</string>
     <string name="user_name">Имя пользователя</string>
     <string name="emotional_state">Эмоциональное состояние</string>
+    <string name="admin">Войти как админ</string>
+    <string name="take_the_test">Пройти тест</string>
 </resources>

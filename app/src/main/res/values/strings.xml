@@ -69,4 +69,7 @@
 
     <!--History-->
     <string name="view_all_history">View All</string>
+
+    <string name="admin">Log in as an admin</string>
+    <string name="take_the_test">Take the test</string>
 </resources>

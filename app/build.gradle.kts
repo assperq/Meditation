@@ -112,6 +112,7 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.6.2")
 
     implementation("com.google.accompanist:accompanist-systemuicontroller:0.27.0")
+    implementation(project(":adminpanel"))
 }
 
 kapt {

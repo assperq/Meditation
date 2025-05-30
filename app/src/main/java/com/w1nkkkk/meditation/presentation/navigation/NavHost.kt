@@ -17,6 +17,7 @@ import com.w1nkkkk.meditation.presentation.screen.ProfileScreen
 import com.w1nkkkk.meditation.presentation.screen.SettingsScreen
 import com.w1nkkkk.meditation.presentation.screen.auth.LoginScreen
 import com.w1nkkkk.meditation.presentation.screen.auth.RegistrationScreen
+import com.w1nkkkk.meditation.presentation.tests.TestScreen
 
 @Composable
 fun SetupNavGraph(
@@ -62,6 +63,15 @@ fun SetupNavGraph(
         composable(Route.History.path) {
             val list = historyViewModel.historyList.collectAsState()
             HistoryScreen(list.value, navController)
+        }
+
+        composable(Route.Test.path) {
+            TestScreen(
+                navController = navController,
+                onTestCompleted = { score ->
+                    accountViewModel.changeEmotionalState(score)
+                }
+            )
         }
     }
 }

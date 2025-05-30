@@ -1,5 +1,6 @@
 package com.w1nkkkk.meditation.presentation.screen.auth
 
+import android.content.Intent
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -22,9 +23,11 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.digital.adminpanel.presentation.AdminActivity
 import com.w1nkkkk.meditation.R
 import com.w1nkkkk.meditation.presentation.component.ErrorDialog
 import com.w1nkkkk.meditation.presentation.component.auth.AuthViewModel
@@ -46,6 +49,8 @@ fun LoginScreen(
     var message by remember {
         mutableStateOf("")
     }
+
+    val context = LocalContext.current
 
     LaunchedEffect(authViewModel) {
         authViewModel.state.collect { error ->
@@ -87,8 +92,16 @@ fun LoginScreen(
                 LoginInputs(
                     onEmailOrMobileChange = {},
                     onPasswordChange = {},
-                    onSubmit = { email, pass ->
-                        authViewModel.singIn(email, pass)
+                    onSubmit = { email, pass, isAdmin ->
+                        if (isAdmin) {
+                            authViewModel.signInAdmin(email, pass) {
+                                val intent = Intent(context, AdminActivity::class.java)
+                                context.startActivity(intent)
+                            }
+                        } else {
+                            authViewModel.singIn(email, pass)
+                        }
+
                     },
                     onForgotPasswordClick = onNavigateToForgotPassword
                 )

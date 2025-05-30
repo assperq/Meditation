@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.Icon
@@ -163,6 +164,16 @@ fun ProfileScreen(
                                 contentScale = ContentScale.Fit
                             )
                         }
+                    }
+                }
+
+                VerticalSpace(20.dp)
+
+                Box(modifier = Modifier.fillMaxWidth(), contentAlignment = Alignment.Center) {
+                    Button(onClick = {
+                        navController.navigate(Route.Test.path)
+                    }, modifier = Modifier.clip(RoundedCornerShape(4.dp))) {
+                        BaseText(LocalContext.current.getString(R.string.take_the_test))
                     }
                 }
 

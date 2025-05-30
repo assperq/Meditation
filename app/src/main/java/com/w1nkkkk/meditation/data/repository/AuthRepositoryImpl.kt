@@ -19,5 +19,10 @@ class AuthRepositoryImpl @Inject constructor(
         return mapper.map(datasource.singIn(email, password))
     }
 
-
+    override suspend fun signInAdmin(
+        login: String,
+        password: String
+    ): Boolean {
+        return datasource.signInAdmin(login, password)
+    }
 }

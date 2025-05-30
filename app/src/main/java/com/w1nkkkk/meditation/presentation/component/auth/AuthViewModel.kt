@@ -54,4 +54,14 @@ class AuthViewModel @Inject constructor(
         }
     }
 
+    fun signInAdmin(login : String, password: String, launchActivity : () -> Unit) {
+        coroutineScope.launch {
+            if (repository.signInAdmin(login, password)) {
+                launchActivity()
+            } else {
+                throw Exception("")
+            }
+        }
+    }
+
 }

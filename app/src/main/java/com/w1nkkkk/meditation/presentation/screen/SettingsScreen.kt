@@ -43,6 +43,7 @@ import com.w1nkkkk.meditation.presentation.component.AppTopBar
 import com.w1nkkkk.meditation.presentation.component.BaseText
 import com.w1nkkkk.meditation.presentation.component.auth.AuthViewModel
 import com.w1nkkkk.meditation.presentation.component.preferences.PreferencesPresenter
+import com.w1nkkkk.meditation.presentation.navigation.Route
 
 @Composable
 fun SettingsScreen(navController : NavController,
@@ -95,6 +96,9 @@ fun SettingsScreen(navController : NavController,
                             text = context.getString(R.string.log_out_button),
                             onElementClick = {
                                 authViewModel.singOut()
+                                navController.navigate(Route.Login.path) {
+                                    popUpTo(0) { inclusive = true }
+                                }
                             }
                         )
                     }
