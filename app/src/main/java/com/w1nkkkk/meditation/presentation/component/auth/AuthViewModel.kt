@@ -8,6 +8,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -23,7 +24,7 @@ class AuthViewModel @Inject constructor(
     private val coroutineExceptionHandler = CoroutineExceptionHandler { context, error ->
         state.value = error
     }
-    private val coroutineScope = CoroutineScope(Dispatchers.IO + coroutineExceptionHandler)
+    private val coroutineScope = CoroutineScope(SupervisorJob() + Dispatchers.IO + coroutineExceptionHandler)
 
     fun singIn(email : String, password : String) {
         coroutineScope.launch {
@@ -59,8 +60,14 @@ class AuthViewModel @Inject constructor(
             if (repository.signInAdmin(login, password)) {
                 launchActivity()
             } else {
-                throw Exception("")
+                throw Exception("Bad data for admin")
             }
+        }
+    }
+
+    fun clearError() {
+        coroutineScope.launch {
+            state.emit(null)
         }
     }
 

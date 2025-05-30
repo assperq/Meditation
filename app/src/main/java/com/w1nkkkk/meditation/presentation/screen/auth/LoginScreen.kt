@@ -52,7 +52,7 @@ fun LoginScreen(
 
     val context = LocalContext.current
 
-    LaunchedEffect(authViewModel) {
+    LaunchedEffect(Unit) {
         authViewModel.state.collect { error ->
             error?.let {
                 seeDialog = true
@@ -62,7 +62,14 @@ fun LoginScreen(
     }
 
     if (seeDialog) {
-        ErrorDialog(message, "Error", onClickOk = { seeDialog = false }, onDismiss = { seeDialog = false })
+        ErrorDialog(message, "Error",
+            onClickOk = {
+                seeDialog = false
+                authViewModel.clearError()
+            }, onDismiss = {
+                seeDialog = false
+                authViewModel.clearError()
+            })
     }
 
     Column(
@@ -73,7 +80,6 @@ fun LoginScreen(
             .verticalScroll(rememberScrollState()),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        // Main card Content for Login
         ElevatedCard(
             modifier = Modifier
                 .fillMaxWidth()
