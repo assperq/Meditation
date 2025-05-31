@@ -52,7 +52,7 @@ fun LoginScreen(
 
     val context = LocalContext.current
 
-    LaunchedEffect(Unit) {
+    LaunchedEffect(authViewModel) {
         authViewModel.state.collect { error ->
             error?.let {
                 seeDialog = true

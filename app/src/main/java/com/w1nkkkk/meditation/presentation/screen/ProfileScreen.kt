@@ -36,12 +36,10 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import androidx.navigation.compose.rememberNavController
 import com.w1nkkkk.meditation.R
 import com.w1nkkkk.meditation.domain.history.HistoryModel
 import com.w1nkkkk.meditation.presentation.component.AppTopBar
@@ -205,8 +203,6 @@ fun ProfileScreen(
                         }
                     }
                 }
-
-                //AchivmentsBlock
             }
         }
     }
@@ -262,11 +258,4 @@ fun ChangeUsernameDialog(
             }
         }
     )
-}
-
-@Composable
-@Preview
-fun ProfileScreenPreview() {
-    val nav = rememberNavController()
-    ProfileScreen(nav)
 }

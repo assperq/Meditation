@@ -16,11 +16,6 @@ import com.w1nkkkk.meditation.presentation.navigation.Route
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AppTopBar(navController: NavController, mainScreen : Boolean = true) {
-//    val topColor = TopAppBarDefaults.topAppBarColors(
-//        containerColor = containerColor,
-//        navigationIconContentColor = settingsIconColor,
-//        actionIconContentColor = profileIconColor
-//    )
     val iconSize = 120.dp
     if (mainScreen) {
         TopAppBar(
