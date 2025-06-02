@@ -4,7 +4,6 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.requiredWidth
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.AccountCircle
 import androidx.compose.material3.Button
@@ -25,8 +24,7 @@ fun NormalButton(
 ) {
     Button(
         modifier = modifier
-            .height(AppTheme.dimens.normalButtonHeight)
-            .requiredWidth(AppTheme.dimens.minButtonWidth),
+            .height(AppTheme.dimens.normalButtonHeight),
         onClick = onClick
     ) {
         Text(text = text, style = MaterialTheme.typography.titleMedium)

@@ -37,12 +37,7 @@ class AccountViewModel @Inject constructor(
         coroutineScope.launch {
             repository.changeName(name)
         }
-        user.value = AccountModel(
-            name,
-            user.value.dayCount,
-            user.value.achievements,
-            user.value.emotion_state
-        )
+        user.value = user.value.copy(name = name)
     }
 
     fun changeDaysCount(date: Long) {
@@ -50,12 +45,7 @@ class AccountViewModel @Inject constructor(
             coroutineScope.launch {
                 repository.changeDaysCount(date)
             }
-            user.value = AccountModel(
-                user.value.name,
-                date.toInt(),
-                user.value.achievements,
-                user.value.emotion_state
-            )
+            user.value = user.value.copy(dayCount = date.toInt())
         }
     }
 
@@ -64,12 +54,7 @@ class AccountViewModel @Inject constructor(
             coroutineScope.launch {
                 repository.changeDaysCount((user.value.dayCount + 1).toLong())
             }
-            user.value = AccountModel(
-                user.value.name,
-                user.value.dayCount + 1,
-                user.value.achievements,
-                user.value.emotion_state
-            )
+            user.value = user.value.copy(dayCount = user.value.dayCount + 1)
         }
     }
 
@@ -91,11 +76,6 @@ class AccountViewModel @Inject constructor(
         coroutineScope.launch {
             repository.changeEmotionalState(state)
         }
-        user.value = AccountModel(
-            user.value.name,
-            user.value.dayCount,
-            user.value.achievements,
-            state
-        )
+        user.value = user.value.copy(emotion_state = state)
     }
 }

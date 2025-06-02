@@ -70,6 +70,9 @@ fun SetupNavGraph(
                 navController = navController,
                 onTestCompleted = { score ->
                     accountViewModel.changeEmotionalState(score)
+                    navController.navigate(Route.Main.path) {
+                        popUpTo(Route.Test.path) { inclusive = true }
+                    }
                 }
             )
         }
